@@ -1,6 +1,7 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { post } from "./types";
 const postsDir = path.join(process.cwd(), "./src/posts");
 
 export const getAllPosts = () => {
@@ -10,6 +11,6 @@ export const getAllPosts = () => {
     const filePath = path.join(postsDir, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
     const { content, data } = matter(fileContents);
-    return { slug, content, ...data };
+    return { slug, content, ...data } as post;
   });
 };
